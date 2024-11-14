@@ -1,5 +1,6 @@
 import time as T
 import random as r
+import json as J 
 class User: 
     
     def __init__(self, username, password, profile, posts= 0, badges=0, logged_in=False, moderator= False, owner= False ): 
@@ -25,19 +26,32 @@ class User:
     def comment(username, ): 
         pass
     def new_user_check(self, new_user): 
-        if self.owner ==True: 
-            new_user = input("which user would you like to approve/deny")
-            if new_user in moderator_check: 
-                approval=input("do you approve this user?")
-                if approval == "yes" or "Yes": 
-                    new_name= r.adjective,r.noun
-                    password = new_user[3]
-                    profile= ##create profile with username as title
-                    User(new_name, password, profile)
+        with open("moderator_check.json", "a") as q: 
+            if self.owner ==True: 
+                new_user = input("which user would you like to approve/deny")
+                if new_user in moderator_check.keys(): 
+                    approval=input("do you approve this user?")
+                    if approval == "yes" or "Yes": 
+                        cont= False
+                        while cont= False: 
+                        with open("adjectives.txt", "r") as f:
+                            readf= f.read()
+                            adjective= list(map(str, readf.split()))
+                        with open("nouns.txt","r") as g:
+                            readg= g.read()
+                            noun= list(map(str,readg.split()))
+                        new_name= r.choice(adjective),r.choice(noun)    
+                        if new_name not in users.keys: 
+                            cont= True
+                        password = new_user[3]
+                        profile= ##create profile with username as title
+                        User(new_name, password, profile)
+                    else: 
+                        pass 
                 else: 
-                    pass 
-        else: 
-            print("you do not have access to this function")
+                    print("this user does not exist")
+            else: 
+                print("you do not have access to this function")
 
 class Post(User): 
     
@@ -57,7 +71,7 @@ def sign_up():
     password= input("what is your password? ")
 
     data_dict = {name:[email,stnum,password]}
-    with open("moderator_check", "a") as f:
+    with open("moderator_check.json", "a") as f:
         f.writelines(data_dict)
     return data_dict
     ##upload to moderator check
