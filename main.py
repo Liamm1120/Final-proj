@@ -66,11 +66,11 @@ class User:
             entered_password= input("enter a password")
             if entered_username == self.username and entered_password == self.password: 
                 self.logged_in == True 
+                return "you have successfully logged in"
             else: 
                 return "incorrect username or password, please try again."
         else: 
             return "you are already logged in."
-        return self.logged_in
             
     def comment(self):
         post_user= input("who made the post?")
@@ -151,8 +151,5 @@ def sign_up():
     
 Ownerprof= open("ownerprof.txt", "r")
 
-with open('userfile.pkl', 'ab') as a:
-    LJ= User("Liam(owner)", "Peagravel3", "ownerprof.txt" )
-    pickle.dump(LJ, a)
-User.log_in(LJ)
-User.owner_class(LJ)
+with open('userfile.pkl', 'ab') as a: 
+    
